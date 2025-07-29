@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "fast-basic"
+version = "0.1.0"
+description = ""
+authors = ["Fernando Hara <fernandohara91@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.*"
+fastapi = {extras = ["standard"], version = "^0.116.1"}
+taskipy = "^1.14.1"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.12.5"
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = '-p no:warnings'
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ["migrations"]
+
+[tool.ruff.lint]
+preview = true
+select = ["I", "F", "E", "W", "PL", "PT"]
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.taskipy.tasks]
+run = 'fastapi dev fast_basic/app.py'
+pre_test = 'task lint'
+test = 'pytest --cov=fast_basic -vv'
+post_test = 'coverage html'
+lint = 'ruff check . && ruff check . --diff'
+format = 'ruff check . --fix && ruff format .'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

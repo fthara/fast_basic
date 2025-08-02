@@ -1,0 +1,8 @@
+database.db
+
+# Environments
+.env
+
+.pytest_cache
+.ruff_cache
+.python-version

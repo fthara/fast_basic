@@ -10,6 +10,9 @@ python = "3.12.*"
 fastapi = {extras = ["standard"], version = "^0.116.1"}
 taskipy = "^1.14.1"
 pydantic = "^2.11.7"
+sqlalchemy = "^2.0.42"
+pydantic-settings = "^2.10.1"
+alembic = "^1.16.4"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.12.5"

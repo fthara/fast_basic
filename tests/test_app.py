@@ -46,23 +46,15 @@ def test_read_users(client):
 
 
 def test_update_user(client):
-    data = {
-        'username': 'bar',
-        'email': 'foo@email.com',
-        'password': '123'
-    }
+    data = {'username': 'bar', 'email': 'foo@email.com', 'password': '123'}
     response = client.put('/users/1', json=data)
 
     assert response.status_code == HTTPStatus.OK
-    assert response.json()["username"] == 'bar'
+    assert response.json()['username'] == 'bar'
 
 
 def test_update_user_invalid_id(client):
-    data = {
-        'username': 'bar',
-        'email': 'foo@email.com',
-        'password': '123'
-    }
+    data = {'username': 'bar', 'email': 'foo@email.com', 'password': '123'}
     response = client.put('/users/2', json=data)
 
     assert response.status_code == HTTPStatus.NOT_FOUND
@@ -75,7 +67,7 @@ def test_delete_user(client):
     assert response.json() == {
         'username': 'bar',
         'email': 'foo@email.com',
-        'id': 1
+        'id': 1,
     }
 
 
